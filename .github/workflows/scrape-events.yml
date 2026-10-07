@@ -1,0 +1,38 @@
+name: Mertune Event Scraper
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'  # Every 4 hours, 24/7
+  workflow_dispatch:        # Manual trigger anytime
+
+jobs:
+  scrape-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run event scraper
+        run: python3 scripts/scrape_events.py
+
+      - name: Inject events into app.html
+        run: python3 scripts/deploy_github.py
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Commit updated app.html
+        run: |
+          git config user.name "Mertune Bot"
+          git config user.email "bot@mertune.com"
+          git add public/app.html
+          git diff --staged --quiet || git commit -m "Auto-update events $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
