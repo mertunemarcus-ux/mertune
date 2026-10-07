@@ -19,7 +19,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 def fetch(url):
     req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=20, context=ctx) as r:
+    with urllib.request.urlopen(req, timeout=10, context=ctx) as r:
         return r.read().decode('utf-8', errors='ignore')
 
 def clean(s):
