@@ -8,6 +8,7 @@ on:
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -24,10 +25,10 @@ jobs:
         run: python3 scripts/deploy_github.py
 
       - name: Deploy to Vercel
-        run: npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        run: |
+          mkdir -p /tmp/vercel-mertune/.vercel
+          echo '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}","orgId":"${{ secrets.VERCEL_ORG_ID }}"}' > /tmp/vercel-mertune/.vercel/project.json
+          cd /tmp/vercel-mertune && npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }} < /dev/null
 
       - name: Commit updated app.html
         run: |
