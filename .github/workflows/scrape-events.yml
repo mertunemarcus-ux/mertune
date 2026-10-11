@@ -5,6 +5,9 @@ on:
     - cron: '0 */4 * * *'  # Every 4 hours, 24/7
   workflow_dispatch:        # Manual trigger anytime
 
+permissions:
+  contents: write
+
 jobs:
   scrape-and-deploy:
     runs-on: ubuntu-latest
