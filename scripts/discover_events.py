@@ -75,9 +75,13 @@ def search_region(name, lat, lng, radius, days=120):
             loc = v.get('location', {})
             cls = (ev.get('classifications') or [{}])[0]
             price = (ev.get('priceRanges') or [{}])[0]
+            imgs = ev.get('images') or []
+            best = sorted([i for i in imgs if i.get('url') and i.get('width', 0) >= 500],
+                          key=lambda i: (i.get('ratio') != '16_9', -i.get('width', 0)))
             events.append({
                 'tm_id': ev.get('id'),
                 'title': ev.get('name', '').strip(),
+                'image': best[0]['url'] if best else '',
                 'date': fmt_date(ev),
                 'iso_date': ev.get('dates', {}).get('start', {}).get('localDate', ''),
                 'url': ev.get('url', ''),

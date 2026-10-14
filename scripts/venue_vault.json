@@ -1,0 +1,50 @@
+{
+  "description": "Mertune venue vault - removed from map but available to re-add",
+  "venues": [
+    {
+      "id": "colony",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'colony',        name:'Colony Theatre',                    subcategory:'Playhouse',             capacity:470,    lat:25.7902, lng:-80.1398, address:'1040 Lincoln Rd, Miami Beach',            rating:4.5 },"
+    },
+    {
+      "id": "gusman",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'gusman',        name:'Olympia Theater at Gusman',         subcategory:'Broadway Theater',      capacity:1766,   lat:25.7741, lng:-80.1905, address:'174 E Flagler St',                       rating:4.4 },"
+    },
+    {
+      "id": "manawynwood",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'manawynwood',   name:'Mana Wynwood Convention Center',    subcategory:'Expo Center',           capacity:240000, lat:25.7984, lng:-80.2027, address:'318 NW 23rd St, Wynwood',                rating:4.3 },"
+    },
+    {
+      "id": "miamiairportcc",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'miamiairportcc',name:'Miami Airport Convention Center',   subcategory:'Convention Center',     capacity:100000, lat:25.7793, lng:-80.3093, address:'711 NW 72nd Ave',                        rating:4.1 },"
+    },
+    {
+      "id": "hardrocklive",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'hardrocklive',  name:'Hard Rock Live',                    subcategory:'Indoor Arena',          capacity:7000,   lat:26.0523, lng:-80.2116, address:'1 Seminole Way, Hollywood',               rating:4.6 },"
+    },
+    {
+      "id": "browardcc",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'browardcc',     name:'Broward County Convention Center',  subcategory:'Convention Center',     capacity:600000, lat:26.0984, lng:-80.1231, address:'1950 Eisenhower Blvd, Fort Lauderdale',  rating:4.2 },"
+    },
+    {
+      "id": "pompano",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'pompano',       name:'Pompano Beach Amphitheatre',        subcategory:'Amphitheater Outdoor',  capacity:3000,   lat:26.2383, lng:-80.1051, address:'1806 NE 6th St, Pompano Beach',           rating:4.4 },"
+    },
+    {
+      "id": "mizner",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'mizner',        name:'Mizner Park Amphitheater',          subcategory:'Amphitheater Outdoor',  capacity:5000,   lat:26.3569, lng:-80.0852, address:'590 Plaza Real, Boca Raton',              rating:4.6 },"
+    },
+    {
+      "id": "kravis",
+      "removed_date": "2026-09-14",
+      "venue_code": "{ id:'kravis',        name:'Kravis Center',                     subcategory:'Concert Hall',          capacity:2195,   lat:26.7069, lng:-80.0601, address:'701 Okeechobee Blvd, West Palm Beach',   rating:4.7 },"
+    }
+  ]
+}

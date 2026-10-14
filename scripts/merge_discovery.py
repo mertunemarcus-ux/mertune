@@ -78,6 +78,7 @@ def main():
             if key in seen: continue
             seen.add(key)
             ev = {'title': x['title'], 'date': x['date'], 'url': x['url']}
+            if x.get('image'): ev['image'] = x['image']
             if x.get('min_price'): ev['price'] = f"From ${x['min_price']:.0f}"
             merged.append(ev)
         # keep hand-curated non-TM events still upcoming (e.g. SeatGeek, venue site)
