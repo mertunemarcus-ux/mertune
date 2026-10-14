@@ -6,7 +6,7 @@ on:
   workflow_dispatch:        # Manual trigger anytime
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   scrape-and-deploy:
@@ -37,11 +37,3 @@ jobs:
           mkdir -p /tmp/vercel-mertune/.vercel
           echo '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}","orgId":"${{ secrets.VERCEL_ORG_ID }}"}' > /tmp/vercel-mertune/.vercel/project.json
           cd /tmp/vercel-mertune && npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }} < /dev/null
-
-      - name: Commit updated app.html
-        run: |
-          git config user.name "Mertune Bot"
-          git config user.email "bot@mertune.com"
-          git add public/app.html
-          git diff --staged --quiet || git commit -m "Auto-update events $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push
