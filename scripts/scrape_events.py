@@ -84,7 +84,12 @@ def scrape_json_ld(html, base_url=''):
                             date_str = d.strftime('%B %d, %Y · %-I:%M %p')
                         except:
                             date_str = start[:10]
-                        events.append({'title': name, 'date': date_str, 'url': url or base_url})
+                        ev = {'title': name, 'date': date_str, 'url': url or base_url}
+                        img = item.get('image')
+                        if isinstance(img, list): img = img[0] if img else ''
+                        if isinstance(img, dict): img = img.get('url', '')
+                        if isinstance(img, str) and img.startswith('http'): ev['image'] = img
+                        events.append(ev)
         except: pass
     return events
 
