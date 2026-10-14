@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" />
+  <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #0a0a1a; }
+    #map { width: 100vw; height: 100vh; }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view') || 'state';
+
+    const FLORIDA_CITIES = [
+      { id: 'miami', name: 'Miami', lat: 25.7617, lng: -80.1918, hasModel: true, eventCount: 5 },
+      { id: 'orlando', name: 'Orlando', lat: 28.5383, lng: -81.3792, hasModel: false, eventCount: 0 },
+      { id: 'tampa', name: 'Tampa', lat: 27.9506, lng: -82.4572, hasModel: false, eventCount: 0 },
+      { id: 'jacksonville', name: 'Jacksonville', lat: 30.3322, lng: -81.6557, hasModel: false, eventCount: 0 },
+      { id: 'fort-lauderdale', name: 'Fort Lauderdale', lat: 26.1224, lng: -80.1373, hasModel: false, eventCount: 0 },
+    ];
+
+    const MIAMI_VENUES = [
+      { id: 'kaseya-center', name: 'Kaseya Center', type: 'stadium', lat: 25.7814, lng: -80.1870, activity: 'packed', crowd: 19600 },
+      { id: 'loandepot-park', name: 'LoanDepot Park', type: 'stadium', lat: 25.7781, lng: -80.2196, activity: null, crowd: 0 },
+      { id: 'liv-nightclub', name: 'LIV Nightclub', type: 'club', lat: 25.8005, lng: -80.1222, activity: 'packed', crowd: 1200 },
+      { id: 'e11even', name: 'E11EVEN Miami', type: 'club', lat: 25.7842, lng: -80.1932, activity: 'high', crowd: 800 },
+      { id: 'perez-art-museum', name: 'Pérez Art Museum', type: 'museum', lat: 25.7859, lng: -80.1863, activity: null, crowd: 0 },
+      { id: 'wynwood-walls', name: 'Wynwood Walls', type: 'attraction', lat: 25.8010, lng: -80.1994, activity: 'medium', crowd: 500 },
+      { id: 'bayside-marketplace', name: 'Bayside Marketplace', type: 'attraction', lat: 25.7784, lng: -80.1868, activity: null, crowd: 0 },
+      { id: 'villa-vizcaya', name: 'Vizcaya Museum', type: 'museum', lat: 25.7444, lng: -80.2106, activity: null, crowd: 0 },
+      { id: 'frost-science', name: 'Frost Science Museum', type: 'museum', lat: 25.7852, lng: -80.1853, activity: null, crowd: 0 },
+      { id: 'hard-rock-stadium', name: 'Hard Rock Stadium', type: 'stadium', lat: 25.9580, lng: -80.2389, activity: 'packed', crowd: 65000 },
+      { id: 'space-miami', name: 'Club Space', type: 'club', lat: 25.7878, lng: -80.1905, activity: null, crowd: 0 },
+      { id: 'miami-tower', name: 'Miami Tower', type: 'attraction', lat: 25.7725, lng: -80.1905, activity: null, crowd: 0 },
+      { id: 'jungle-island', name: 'Jungle Island', type: 'attraction', lat: 25.7870, lng: -80.1740, activity: null, crowd: 0 },
+      { id: 'cocowalk', name: 'CocoWalk', type: 'attraction', lat: 25.7290, lng: -80.2419, activity: null, crowd: 0 },
+      { id: 'freedom-tower', name: 'Freedom Tower', type: 'museum', lat: 25.7855, lng: -80.1893, activity: null, crowd: 0 },
+    ];
+
+    function getActivityColor(level) {
+      switch (level) {
+        case 'packed': return '#FF1744';
+        case 'high': return '#FF9100';
+        case 'medium': return '#FFEA00';
+        case 'low': return '#00E676';
+        default: return '#999';
+      }
+    }
+
+    function getIcon(type) {
+      switch (type) {
+        case 'stadium': return '🏟️';
+        case 'club': return '🎵';
+        case 'museum': return '🏛️';
+        case 'attraction': return '🎡';
+        default: return '📍';
+      }
+    }
+
+    // State view config
+    const stateConfig = {
+      center: [-81.5, 27.8],
+      zoom: 5.8,
+      pitch: 45,
+      bearing: -10,
+      maxBounds: [[-90, 23], [-78, 32]],
+    };
+
+    // City view config
+    const cityConfig = {
+      center: [-80.195, 25.775],
+      zoom: 12.5,
+      pitch: 55,
+      bearing: -15,
+    };
+
+    const config = view === 'city' ? cityConfig : stateConfig;
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+      center: config.center,
+      zoom: config.zoom,
+      pitch: config.pitch,
+      bearing: config.bearing,
+      maxBounds: config.maxBounds,
+      antialias: true,
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    map.on('load', function () {
+      // 3D terrain
+      try {
+        map.addSource('terrain', {
+          type: 'raster-dem',
+          tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          encoding: 'terrarium',
+        });
+        map.setTerrain({ source: 'terrain', exaggeration: view === 'city' ? 2 : 3 });
+      } catch (e) {}
+
+      if (view === 'city') {
+        // 3D buildings for city view
+        try {
+          var layers = map.getStyle().layers || [];
+          var buildingLayer = layers.find(function (l) {
+            return l.id && l.id.indexOf('building') !== -1 && l.type === 'fill';
+          });
+          if (buildingLayer) {
+            map.addLayer({
+              id: '3d-buildings',
+              source: buildingLayer.source || 'carto',
+              'source-layer': buildingLayer['source-layer'] || 'building',
+              filter: ['==', '$type', 'Polygon'],
+              type: 'fill-extrusion',
+              minzoom: 12,
+              paint: {
+                'fill-extrusion-color': '#aabbcc',
+                'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 10],
+                'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
+                'fill-extrusion-opacity': 0.7,
+              },
+            });
+          }
+        } catch (e) {}
+
+        // Miami venue markers
+        MIAMI_VENUES.forEach(function (venue) {
+          var actColor = getActivityColor(venue.activity);
+          var hasEvent = !!venue.activity;
+
+          var container = document.createElement('div');
+          container.style.cssText = 'position: relative; cursor: pointer;';
+
+          if (hasEvent) {
+            var pulse = document.createElement('div');
+            pulse.style.cssText =
+              'position: absolute; top: -14px; left: -14px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid ' +
+              actColor + '; background: ' + actColor + '22; animation: pulse 2s infinite;';
+            container.appendChild(pulse);
+          }
+
+          var pin = document.createElement('div');
+          pin.style.cssText =
+            'width: 16px; height: 16px; border-radius: 50%; background: ' +
+            (hasEvent ? actColor : '#DDD') +
+            '; border: 3px solid #FFF; box-shadow: 0 2px 8px rgba(0,0,0,0.4)' +
+            (hasEvent ? ', 0 0 20px ' + actColor + '66' : '') +
+            '; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 9px;';
+          pin.textContent = getIcon(venue.type);
+          container.appendChild(pin);
+
+          var label = document.createElement('div');
+          label.style.cssText =
+            'position: absolute; top: 24px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 11px; font-weight: 700; color: #333; padding: 3px 8px; background: rgba(255,255,255,0.92); border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 4px;';
+
+          var nameSpan = document.createElement('span');
+          nameSpan.textContent = venue.name;
+          label.appendChild(nameSpan);
+
+          if (hasEvent) {
+            var badge = document.createElement('span');
+            badge.style.cssText =
+              'font-size: 9px; font-weight: 900; color: #FFF; background: ' +
+              actColor + '; padding: 1px 5px; border-radius: 4px;';
+            badge.textContent = venue.activity.toUpperCase();
+            label.appendChild(badge);
+          }
+
+          container.appendChild(label);
+
+          container.addEventListener('click', function () {
+            var msg = JSON.stringify({ type: 'venueSelect', venueId: venue.id });
+            if (window.ReactNativeWebView) { window.ReactNativeWebView.postMessage(msg); }
+            else { window.parent.postMessage(msg, '*'); }
+          });
+
+          new maplibregl.Marker({ element: container, anchor: 'center' })
+            .setLngLat([venue.lng, venue.lat])
+            .addTo(map);
+        });
+
+      } else {
+        // State view — city markers
+        FLORIDA_CITIES.forEach(function (city) {
+          var el = document.createElement('div');
+          el.style.position = 'relative';
+          el.style.cursor = city.hasModel ? 'pointer' : 'default';
+
+          if (city.hasModel) {
+            var pulseOuter = document.createElement('div');
+            pulseOuter.style.cssText =
+              'position: absolute; top: -12px; left: -12px; width: 40px; height: 40px; border-radius: 50%; border: 2px solid #00E5FF; background: rgba(0,229,255,0.15); animation: pulse 2s infinite;';
+            el.appendChild(pulseOuter);
+          }
+
+          var pin = document.createElement('div');
+          pin.style.cssText =
+            'width: ' + (city.hasModel ? '16px' : '10px') +
+            '; height: ' + (city.hasModel ? '16px' : '10px') +
+            '; border-radius: 50%; background: ' + (city.hasModel ? '#00E5FF' : '#999') +
+            '; border: 2px solid ' + (city.hasModel ? '#FFF' : '#CCC') +
+            '; box-shadow: ' + (city.hasModel ? '0 0 16px rgba(0,229,255,0.8)' : '0 1px 4px rgba(0,0,0,0.3)') +
+            '; position: relative; z-index: 2;';
+          el.appendChild(pin);
+
+          var label = document.createElement('div');
+          label.style.cssText =
+            'position: absolute; top: ' + (city.hasModel ? '22px' : '16px') +
+            '; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: ' +
+            (city.hasModel ? '13px' : '11px') + '; font-weight: ' +
+            (city.hasModel ? '800' : '600') + '; color: ' +
+            (city.hasModel ? '#1a1a2e' : '#666') +
+            '; padding: 2px 8px; background: rgba(255,255,255,0.85); border-radius: 6px;';
+          label.textContent = city.name;
+
+          if (city.hasModel && city.eventCount > 0) {
+            var badge = document.createElement('span');
+            badge.style.cssText =
+              'margin-left: 4px; font-size: 10px; font-weight: 900; color: #FFF; background: #FF1744; padding: 1px 5px; border-radius: 6px;';
+            badge.textContent = city.eventCount + ' live';
+            label.appendChild(badge);
+          }
+
+          el.appendChild(label);
+
+          el.addEventListener('click', function () {
+            if (city.hasModel) {
+              map.flyTo({
+                center: [city.lng, city.lat],
+                zoom: 11,
+                pitch: 55,
+                bearing: 0,
+                duration: 1500,
+              });
+              setTimeout(function () {
+                var msg = JSON.stringify({ type: 'citySelect', cityId: city.id, cityName: city.name });
+                if (window.ReactNativeWebView) { window.ReactNativeWebView.postMessage(msg); }
+                else { window.parent.postMessage(msg, '*'); }
+              }, 1600);
+            }
+          });
+
+          new maplibregl.Marker({ element: el })
+            .setLngLat([city.lng, city.lat])
+            .addTo(map);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
