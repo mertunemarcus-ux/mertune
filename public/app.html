@@ -193,7 +193,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: -apple-sy
   width: 360px;
   background: #fff;
   box-shadow: -4px 0 30px rgba(0,0,0,0.15);
-  z-index: 400;
+  z-index: 600;
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
@@ -1644,6 +1644,7 @@ function openBusinessCard(venue) {
   evHTML += '</div>';
   body.innerHTML += evHTML;
 
+  var _sb=document.getElementById('search-bar'); if(_sb) _sb.style.display='none';
   document.getElementById('business-card').classList.add('open');
 }
 
