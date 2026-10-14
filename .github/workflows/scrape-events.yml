@@ -30,7 +30,7 @@ jobs:
         run: python3 scripts/discover_events.py
 
       - name: Inject events into app.html
-        run: python3 scripts/deploy_github.py && python3 scripts/merge_discovery.py
+        run: python3 scripts/deploy_github.py && python3 scripts/merge_discovery.py && python3 scripts/fetch_posters.py
 
       - name: Deploy to Vercel
         run: |

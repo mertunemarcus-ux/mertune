@@ -24,7 +24,7 @@ MATCH = {
     'revolution':   ['revolution live'],
     'adrienne':     ['arsht center', 'knight concert hall', 'ziff ballet opera house', 'thomson plaza'],
     'broward':      ['broward center', 'au-rene', 'amaturo'],
-    'parker':       ['the parker', 'parker playhouse'],
+    'parker':       ['wells hall at the parker', 'parker playhouse'],
     'jlknight':     ['james l knight', 'james l. knight'],
     'pitbull_stadium': ['pitbull stadium'],
     'daytona_speedway': ['daytona international speedway'],
