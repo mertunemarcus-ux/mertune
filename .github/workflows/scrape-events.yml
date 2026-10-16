@@ -36,4 +36,9 @@ jobs:
         run: |
           mkdir -p /tmp/vercel-mertune/.vercel
           echo '{"projectId":"${{ secrets.VERCEL_PROJECT_ID }}","orgId":"${{ secrets.VERCEL_ORG_ID }}"}' > /tmp/vercel-mertune/.vercel/project.json
-          cd /tmp/vercel-mertune && npx vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }} < /dev/null
+          cd /tmp/vercel-mertune
+          for i in 1 2 3; do
+            npx --yes vercel@59 --prod --yes --token ${{ secrets.VERCEL_TOKEN }} < /dev/null && exit 0
+            echo "deploy attempt $i failed, retrying in 30s"; sleep 30
+          done
+          exit 1
