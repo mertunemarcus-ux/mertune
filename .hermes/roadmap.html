@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mertune $1B Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#080810;color:#fff;font-family:'Inter',sans-serif;padding:24px;}
+h1{font-size:28px;font-weight:900;letter-spacing:2px;margin-bottom:4px;}
+h1 span{background:linear-gradient(90deg,#DF00FF,#00CFFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.subtitle{color:#888;font-size:14px;margin-bottom:32px;}
+.stats{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+.stat{flex:1;min-width:120px;background:#111;border-radius:12px;padding:16px;border:1px solid #1a1a1a;text-align:center;}
+.stat-val{font-size:22px;font-weight:900;margin-bottom:4px;}
+.stat-label{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.5px;}
+.progress-wrap{margin-bottom:32px;}
+.progress-label{font-size:12px;color:#666;margin-bottom:8px;display:flex;justify-content:space-between;}
+.progress-bar{height:6px;background:#1a1a1a;border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#007AFF,#DF00FF,#FF9500);width:8%;}
+.phase{margin-bottom:32px;}
+.phase-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:14px;margin-bottom:12px;}
+.phase-icon{font-size:24px;}
+.phase-title{font-size:18px;font-weight:800;}
+.phase-date{font-size:12px;opacity:0.7;margin-left:auto;}
+.phase-1 .phase-header{background:linear-gradient(135deg,#1a1a3a,#252550);border-left:4px solid #007AFF;}
+.phase-2 .phase-header{background:linear-gradient(135deg,#1a2a1a,#253525);border-left:4px solid #34C759;}
+.phase-3 .phase-header{background:linear-gradient(135deg,#2a1a2a,#352535);border-left:4px solid #DF00FF;}
+.phase-4 .phase-header{background:linear-gradient(135deg,#2a2a1a,#353525);border-left:4px solid #FF9500;}
+.phase-5 .phase-header{background:linear-gradient(135deg,#2a1a1a,#352525);border-left:4px solid #FF3B30;}
+.timeline{padding-left:20px;border-left:2px solid #222;}
+.week{margin-bottom:8px;position:relative;}
+.week::before{content:'';position:absolute;left:-25px;top:14px;width:10px;height:10px;border-radius:50%;background:#333;border:2px solid #555;}
+.week.done::before{background:#34C759;border-color:#34C759;}
+.week.active::before{background:#007AFF;border-color:#007AFF;box-shadow:0 0 8px #007AFF;}
+.week.critical::before{background:#FF3B30;border-color:#FF3B30;}
+.week.money::before{background:#FF9500;border-color:#FF9500;}
+.week-inner{background:#111;border-radius:10px;padding:12px 16px;margin-left:8px;border:1px solid #1a1a1a;}
+.week-date{font-size:11px;color:#555;font-weight:600;letter-spacing:0.5px;margin-bottom:4px;}
+.week-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;}
+.week-tasks{list-style:none;}
+.week-tasks li{font-size:12px;color:#aaa;padding:3px 0;display:flex;align-items:flex-start;gap:8px;}
+.week-tasks li::before{content:'→';color:#444;flex-shrink:0;}
+.week-tasks li.done{color:#34C759;}
+.week-tasks li.done::before{content:'✓';color:#34C759;}
+.week-tasks li.critical{color:#FF6B6B;}
+.week-tasks li.critical::before{content:'🔑';}
+.week-tasks li.money{color:#FF9500;}
+.week-tasks li.money::before{content:'💰';}
+.milestone{background:linear-gradient(135deg,#1a1500,#252200);border:1px solid #FF9500;border-radius:10px;padding:12px 16px;margin:16px 0 16px 8px;display:flex;align-items:center;gap:12px;}
+.milestone-icon{font-size:24px;}
+.milestone-text{font-size:14px;font-weight:800;color:#FF9500;}
+.milestone-sub{font-size:12px;color:#888;margin-top:2px;}
+</style>
+</head>
+<body>
+<h1><span>MERTUNE</span> $1B ROADMAP</h1>
+<p class="subtitle">Day-by-day execution plan · Started September 2026</p>
+
+<div class="stats">
+  <div class="stat"><div class="stat-val" style="color:#34C759">✅ Built</div><div class="stat-label">App Status</div></div>
+  <div class="stat"><div class="stat-val" style="color:#007AFF">116</div><div class="stat-label">Live Events</div></div>
+  <div class="stat"><div class="stat-val" style="color:#DF00FF">12</div><div class="stat-label">Venues</div></div>
+  <div class="stat"><div class="stat-val" style="color:#FF9500">ASAP</div><div class="stat-label">Launch Date</div></div>
+  <div class="stat"><div class="stat-val" style="color:#FF3B30">$1B</div><div class="stat-label">Goal</div></div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-label"><span>Overall Progress</span><span>12% — Foundation + Website Complete</span></div>
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+</div>
+
+<div class="phase phase-1">
+  <div class="phase-header"><span class="phase-icon">🏗️</span><div><div class="phase-title">PHASE 1 — BUILD & BETA</div><div style="font-size:12px;opacity:0.6">October – December 2026 · 🟢 ~70% complete</div></div></div>
+  <div class="timeline">
+    <div class="week done"><div class="week-inner"><div class="week-date">✅ COMPLETED — as of Oct 16</div><div class="week-title">Foundation Built</div><ul class="week-tasks"><li class="done">Florida map — 62 venues, 449 live events (Miami, Orlando, Tampa, Jax, Tallahassee, Fort Myers, Daytona, Pensacola…)</li><li class="done">Event Posters panel + fuzzy search</li><li class="done">Auto-updates every 4 hours via GitHub Actions (24/7, Mac off)</li><li class="done">Ticketmaster Discovery API — 3,400+ FL events scanned per run</li><li class="done">Real event posters from venue sites + Ticketmaster (366/449)</li><li class="done">Port of Miami — 6 cruise terminals · Halloween venues statewide</li><li class="done">Deployed to Vercel · mertune.com live · landing page</li><li class="done">Apple Developer account ACTIVE</li><li class="done">App icon (neon route-M) · bundle com.mertune.map</li><li class="done">eas build → iOS binary built</li><li class="done">eas submit → on App Store Connect (build 1.0.0 #3)</li><li class="done">Social handle chosen: @mertune_map</li></ul></div></div>
+    <div class="week active"><div class="week-inner"><div class="week-date">🔑 RIGHT NOW — Week of Oct 16</div><div class="week-title">App Store Listing → Submit for Review</div><ul class="week-tasks"><li class="critical">Install Mertune via TestFlight on iPhone — real-app test</li><li class="critical">Write App Store description + keywords ("Beta")</li><li class="critical">Capture 6.7" screenshots</li><li class="critical">Privacy policy page on mertune.com</li><li>Submit for App Review (1–3 days)</li><li>Add Miami Carnival as seasonal venue (2027)</li></ul></div></div>
+    <div class="week"><div class="week-inner"><div class="week-date">Late October 2026</div><div class="week-title">Go Live as BETA + First Content</div><ul class="week-tasks"><li class="critical">App approved → release as "Mertune (Beta)"</li><li>Create @mertune_map on TikTok, Instagram, X, YouTube</li><li>Post first app demo video (DJI Osmo Pocket)</li><li>Share with 20+ friends & family — collect bugs</li><li>Eventbrite API — small events, block parties, J'ouvert-type</li></ul></div></div>
+    <div class="week"><div class="week-inner"><div class="week-date">November 2026</div><div class="week-title">Affiliates ON + Hotels</div><ul class="week-tasks"><li class="money">Reapply to Impact with App Store link → SeatGeek + Ticketmaster IDs</li><li class="money">Flip affiliate switcher live (code already built)</li><li>Hotel affiliate signup (Booking.com)</li><li>Add hotels to Event Posters panel</li><li>Post 3x/week TikTok & Instagram</li><li>Reach out to Miami influencers</li></ul></div></div>
+    <div class="week"><div class="week-inner"><div class="week-date">December 2026</div><div class="week-title">Grow + Polish</div><ul class="week-tasks"><li>Add 200+ Ticketmaster venues already discovered (Hard Rock Live, Disney, ICON Park…)</li><li>Christmas / New Year's seasonal venues (red)</li><li>Fix bugs from beta feedback</li><li>Build press kit</li><li>Grow TikTok to 1,000+ followers</li></ul></div></div>
+    <div class="milestone"><span class="milestone-icon">🎯</span><div><div class="milestone-text">MILESTONE: App Store Approved</div><div class="milestone-sub">Invisible to public · Affiliate links live · All Florida cities built</div></div></div>
+  </div>
+</div>
+
+<div class="phase phase-2">
+  <div class="phase-header"><span class="phase-icon">🚀</span><div><div class="phase-title">PHASE 2 — LAUNCH</div><div style="font-size:12px;opacity:0.6">January – March 2027</div></div></div>
+  <div class="timeline">
+    <div class="week"><div class="week-inner"><div class="week-date">January 2027</div><div class="week-title">Pre-Launch Hype</div><ul class="week-tasks"><li>Daily TikTok countdown to launch</li><li>DM Miami event pages to feature Mertune</li><li>Apply to Impact affiliate (App Store URL ready)</li><li>Partner with 3 Miami influencers</li><li>Send press release to Miami Herald</li></ul></div></div>
+    <div class="week critical"><div class="week-inner"><div class="week-date">🔴 LAUNCH DAY — AS SOON AS READY</div><div class="week-title">GO LIVE — TELL EVERYONE</div><ul class="week-tasks"><li class="critical">Flip App Store switch to PUBLIC</li><li class="critical">Post launch video on all platforms</li><li class="critical">Influencers post simultaneously</li><li class="critical">Target: 1,000 downloads day 1</li><li class="money">First affiliate commissions hit</li></ul></div></div>
+    <div class="milestone"><span class="milestone-icon">🎉</span><div><div class="milestone-text">MILESTONE: Public Launch</div><div class="milestone-sub">Target: 1,000 downloads · First real revenue · Media coverage</div></div></div>
+  </div>
+</div>
+
+<div class="phase phase-3">
+  <div class="phase-header"><span class="phase-icon">💰</span><div><div class="phase-title">PHASE 3 — REVENUE</div><div style="font-size:12px;opacity:0.6">Launch → 3 months after</div></div></div>
+  <div class="timeline">
+    <div class="week"><div class="week-inner"><div class="week-date">Month 1-2 Post Launch</div><div class="week-title">10,000 Users</div><ul class="week-tasks"><li class="money">Ticket affiliate: ~$10,000/month</li><li class="money">Hotel affiliate: ~$5,000/month</li><li>Add New York City</li><li>Add Los Angeles</li><li>Scale TikTok ads to $20/day</li></ul></div></div>
+    <div class="week"><div class="week-inner"><div class="week-date">Month 3-6 Post Launch</div><div class="week-title">50,000 Users</div><ul class="week-tasks"><li class="money">Monthly revenue: $25,000-50,000</li><li>Add Chicago, Las Vegas, Houston</li><li>Launch premium subscription ($4.99/mo)</li><li>First investor conversations</li></ul></div></div>
+    <div class="milestone"><span class="milestone-icon">💵</span><div><div class="milestone-text">MILESTONE: $50K/month Revenue</div><div class="milestone-sub">50,000 users · 10 US cities · Investor interest building</div></div></div>
+  </div>
+</div>
+
+<div class="phase phase-4">
+  <div class="phase-header"><span class="phase-icon">📈</span><div><div class="phase-title">PHASE 4 — SCALE</div><div style="font-size:12px;opacity:0.6">6-18 months post launch</div></div></div>
+  <div class="timeline">
+    <div class="week"><div class="week-inner"><div class="week-date">6-12 Months Post Launch</div><div class="week-title">Top 25 US Cities</div><ul class="week-tasks"><li>NYC, LA, Chicago, Vegas, Houston, Atlanta live</li><li class="money">Monthly revenue: $100,000+</li><li>Raise seed funding ($500K-2M)</li><li>Android version launch</li></ul></div></div>
+    <div class="week"><div class="week-inner"><div class="week-date">12-18 Months Post Launch</div><div class="week-title">All 50 US Cities</div><ul class="week-tasks"><li class="money">Monthly revenue: $500,000</li><li>Series A fundraise ($5-10M)</li><li>1,000,000 total users</li><li>International expansion planning</li></ul></div></div>
+    <div class="milestone"><span class="milestone-icon">🦄</span><div><div class="milestone-text">MILESTONE: $500K/month</div><div class="milestone-sub">1M users · All US cities · Series A raised · Valuation: $50M-100M</div></div></div>
+  </div>
+</div>
+
+<div class="phase phase-5">
+  <div class="phase-header"><span class="phase-icon">🌍</span><div><div class="phase-title">PHASE 5 — $1 BILLION</div><div style="font-size:12px;opacity:0.6">2028-2029</div></div></div>
+  <div class="timeline">
+    <div class="week"><div class="week-inner"><div class="week-date">2028</div><div class="week-title">Global Expansion</div><ul class="week-tasks"><li>London, Dubai, Toronto, Mexico City</li><li class="money">Monthly revenue: $1,000,000+</li><li>Series B: $25-50M raised</li><li>10,000,000 global users</li></ul></div></div>
+    <div class="week"><div class="week-inner"><div class="week-date">2029</div><div class="week-title">$1B Valuation Achieved</div><ul class="week-tasks"><li class="money">$12M+/year revenue × 83x = $1B valuation</li><li>IPO or strategic acquisition</li><li>50M+ global users · 500+ cities</li><li class="money">Marcus net worth: $200M-500M</li></ul></div></div>
+    <div class="milestone"><span class="milestone-icon">🏆</span><div><div class="milestone-text">GOAL: $1,000,000,000</div><div class="milestone-sub">It started with a map of Miami. It became the world's entertainment OS.</div></div></div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:40px 0;color:#333;font-size:12px;">The only thing standing between here and $1B is execution. One day at a time. 🚀</div>
+</body>
+</html>
