@@ -45,6 +45,127 @@
       "id": "kravis",
       "removed_date": "2026-09-14",
       "venue_code": "{ id:'kravis',        name:'Kravis Center',                     subcategory:'Concert Hall',          capacity:2195,   lat:26.7069, lng:-80.0601, address:'701 Okeechobee Blvd, West Palm Beach',   rating:4.7 },"
+    },
+    {
+      "id": "portmiami_main",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'portmiami_main', name:'Port of Miami',                      subcategory:'Cruise Terminal', capacity:50000, lat:25.7770, lng:-80.1730, address:'1015 North America Way, Miami, FL 33132', rating:4.9 },",
+      "events": [
+        {
+          "title": "\ud83d\udea2 Terminal AA \u2014 MSC Cruises \u00b7 Daily Departures",
+          "date": "World's largest cruise terminal",
+          "url": "https://www.msccruisesusa.com/cruise-search?homeport=Miami"
+        },
+        {
+          "title": "\ud83d\udea2 Terminal A \u2014 Royal Caribbean \u00b7 Daily Departures",
+          "date": "The Crown of Miami",
+          "url": "https://www.royalcaribbean.com/cruise-search?homeport=Miami"
+        },
+        {
+          "title": "\ud83d\udea2 Terminal B \u2014 Norwegian Cruise Line",
+          "date": "The Pearl of Miami",
+          "url": "https://www.ncl.com/cruise-search?homeport=Miami"
+        },
+        {
+          "title": "\ud83d\udea2 Terminals D,E,F \u2014 Carnival Cruise Line",
+          "date": "3 terminals \u00b7 Largest Carnival homeport",
+          "url": "https://www.carnival.com/cruise-search?homeport=Miami"
+        },
+        {
+          "title": "\ud83d\udea2 Terminal J \u2014 Luxury Lines (Oceania, Regent, Silversea)",
+          "date": "Boutique luxury terminal",
+          "url": "https://www.oceaniacruises.com/cruise-search?homeport=Miami"
+        },
+        {
+          "title": "\ud83d\udea2 Terminal V \u2014 Virgin Voyages",
+          "date": "Adults-only \u00b7 Fastest check-in at port",
+          "url": "https://www.virginvoyages.com/cruise-search?homeport=Miami"
+        }
+      ]
+    },
+    {
+      "id": "terminal_aa",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'terminal_aa',   name:'Terminal AA \u2014 MSC Cruises',         subcategory:'Cruise Terminal', capacity:36000, lat:25.7792, lng:-80.1775, address:'2200 N Cruise Blvd, Port of Miami, FL 33132',  rating:4.9 },",
+      "events": [
+        {
+          "title": "MSC Seascape \u2014 Western Caribbean",
+          "date": "October 17, 2026 \u00b7 5:00 PM",
+          "url": "https://www.msccruisesusa.com/cruise-search?homeport=Miami"
+        },
+        {
+          "title": "MSC Meraviglia \u2014 Bahamas",
+          "date": "October 31, 2026 \u00b7 5:00 PM",
+          "url": "https://www.msccruisesusa.com/cruise-search?homeport=Miami"
+        }
+      ]
+    },
+    {
+      "id": "terminal_a",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'terminal_a',    name:'Terminal A \u2014 Royal Caribbean',       subcategory:'Cruise Terminal', capacity:10000, lat:25.7778, lng:-80.1748, address:'2000 N Cruise Blvd, Port of Miami, FL 33132',  rating:4.8 },",
+      "events": [
+        {
+          "title": "Oasis of the Seas \u2014 Western Caribbean",
+          "date": "October 20, 2026 \u00b7 4:30 PM",
+          "url": "https://www.royalcaribbean.com/cruise-search?homeport=Miami"
+        }
+      ]
+    },
+    {
+      "id": "terminal_b",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'terminal_b',    name:'Terminal B \u2014 Norwegian Cruise Line', subcategory:'Cruise Terminal', capacity:8000,  lat:25.7768, lng:-80.1728, address:'1761 N Cruise Blvd, Port of Miami, FL 33132',  rating:4.7 },",
+      "events": [
+        {
+          "title": "Norwegian Breakaway \u2014 Bahamas",
+          "date": "October 17, 2026 \u00b7 4:00 PM",
+          "url": "https://www.ncl.com/cruise-search?homeport=Miami"
+        }
+      ]
+    },
+    {
+      "id": "terminal_def",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'terminal_def',  name:'Terminals D,E,F \u2014 Carnival',        subcategory:'Cruise Terminal', capacity:15000, lat:25.7755, lng:-80.1700, address:'1103-1435 N Cruise Blvd, Port of Miami, FL',    rating:4.6 },",
+      "events": [
+        {
+          "title": "Carnival Horizon \u2014 Bahamas",
+          "date": "October 19, 2026 \u00b7 3:30 PM",
+          "url": "https://www.carnival.com/cruise-search?homeport=Miami"
+        }
+      ]
+    },
+    {
+      "id": "terminal_j",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'terminal_j',    name:'Terminal J \u2014 Luxury Cruises',        subcategory:'Cruise Terminal', capacity:2000,  lat:25.7742, lng:-80.1685, address:'1120 Caribbean Way, Port of Miami, FL 33132',  rating:4.9 },",
+      "events": [
+        {
+          "title": "Silversea Silver Moon \u2014 Southern Caribbean",
+          "date": "October 22, 2026 \u00b7 5:00 PM",
+          "url": "https://www.silversea.com/cruise-search?homeport=Miami"
+        }
+      ]
+    },
+    {
+      "id": "terminal_v",
+      "removed_date": "2026-10-18",
+      "reason": "cruise feature parked",
+      "venue_code": "{ id:'terminal_v',    name:'Terminal V \u2014 Virgin Voyages',        subcategory:'Cruise Terminal', capacity:5000,  lat:25.7762, lng:-80.1760, address:'718 N Cruise Blvd, Port of Miami, FL 33132',   rating:4.8 },",
+      "events": [
+        {
+          "title": "Brilliant Lady \u2014 Caribbean",
+          "date": "October 28, 2026 \u00b7 6:00 PM",
+          "url": "https://www.virginvoyages.com/cruise-search?homeport=Miami"
+        }
+      ]
     }
   ]
 }
